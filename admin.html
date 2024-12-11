@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Page</h1>
+    </header>
+    <main>
+        <form id="updateContentForm">
+            <label for="page">Select Page to Update:</label>
+            <select id="page" name="page">
+                <option value="calendar">NU Calendar</option>
+                <option value="links">Important Links</option>
+                <option value="deadlines">Deadlines</option>
+                <option value="exams">Exam Schedules</option>
+            </select>
+
+            <label for="content">New Content:</label>
+            <textarea id="content" name="content" rows="10" cols="30"></textarea>
+
+            <button type="button" onclick="updateContent()">Update</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Student Links Hub. All Rights Reserved.</p>
+    </footer>
+    <script>
+        function updateContent() {
+            const page = document.getElementById('page').value;
+            const content = document.getElementById('content').value;
+            console.log(`Update ${page} with content:`, content);
+            alert('Content updated! (Functionality to be implemented)');
+        }
+    </script>
+</body>
+</html>
