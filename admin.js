@@ -1,35 +1,28 @@
+import { database, ref, set } from './firebase-config.js';
+
 document.addEventListener("DOMContentLoaded", () => {
-    const backend = {
-        links: {
-            calendar: "calendar.html",
-            importantLinks: "links.html",
-            deadlines: "deadlines.html",
-            exams: "exams.html",
-        },
-        content: "Default content for pages.",
-    };
+    const saveLinks = document.getElementById("links-form");
+    const saveContent = document.getElementById("save-content");
 
-    const populateForm = () => {
-        document.getElementById("calendar-link").value = backend.links.calendar;
-        document.getElementById("important-links").value = backend.links.importantLinks;
-        document.getElementById("deadlines").value = backend.links.deadlines;
-        document.getElementById("exams").value = backend.links.exams;
-        document.getElementById("content-editor").value = backend.content;
-    };
-
-    populateForm();
-
-    document.getElementById("links-form").addEventListener("submit", (e) => {
+    // Save links to Firebase
+    saveLinks.addEventListener("submit", (e) => {
         e.preventDefault();
-        backend.links.calendar = document.getElementById("calendar-link").value;
-        backend.links.importantLinks = document.getElementById("important-links").value;
-        backend.links.deadlines = document.getElementById("deadlines").value;
-        backend.links.exams = document.getElementById("exams").value;
-        alert("Links updated successfully!");
+        const data = {
+            calendar: document.getElementById("calendar-link").value,
+            importantLinks: document.getElementById("important-links").value,
+            deadlines: document.getElementById("deadlines").value,
+            exams: document.getElementById("exams").value,
+        };
+        set(ref(database, "links"), data)
+            .then(() => alert("Links updated successfully!"))
+            .catch((error) => alert("Error: " + error.message));
     });
 
-    document.getElementById("save-content").addEventListener("click", () => {
-        backend.content = document.getElementById("content-editor").value;
-        alert("Content updated successfully!");
+    // Save content to Firebase
+    saveContent.addEventListener("click", () => {
+        const content = document.getElementById("content-editor").value;
+        set(ref(database, "content"), content)
+            .then(() => alert("Content updated successfully!"))
+            .catch((error) => alert("Error: " + error.message));
     });
 });
