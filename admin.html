@@ -5,37 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="admin.js" defer></script>
 </head>
 <body>
     <header>
         <h1>Admin Page</h1>
     </header>
     <main>
-        <form id="updateContentForm">
-            <label for="page">Select Page to Update:</label>
-            <select id="page" name="page">
-                <option value="calendar">NU Calendar</option>
-                <option value="links">Important Links</option>
-                <option value="deadlines">Deadlines</option>
-                <option value="exams">Exam Schedules</option>
-            </select>
-
-            <label for="content">New Content:</label>
-            <textarea id="content" name="content" rows="10" cols="30"></textarea>
-
-            <button type="button" onclick="updateContent()">Update</button>
+        <h2>Update Links</h2>
+        <form id="links-form">
+            <label for="calendar-link">NU Calendar Link:</label>
+            <input type="url" id="calendar-link" placeholder="Enter Calendar URL" required>
+            <label for="important-links">Important Links:</label>
+            <input type="url" id="important-links" placeholder="Enter Important Links URL" required>
+            <label for="deadlines">Deadlines Link:</label>
+            <input type="url" id="deadlines" placeholder="Enter Deadlines URL" required>
+            <label for="exams">Exam Schedules Link:</label>
+            <input type="url" id="exams" placeholder="Enter Exams URL" required>
+            <button type="submit">Save Links</button>
         </form>
+
+        <h2>Update Content</h2>
+        <textarea id="content-editor" rows="10" placeholder="Edit content here..."></textarea>
+        <button id="save-content">Save Content</button>
     </main>
     <footer>
-        <p>&copy; 2024 Student Links Hub. All Rights Reserved.</p>
+        <p>&copy; 2024 Student Hub. All rights reserved.</p>
     </footer>
-    <script>
-        function updateContent() {
-            const page = document.getElementById('page').value;
-            const content = document.getElementById('content').value;
-            console.log(`Update ${page} with content:`, content);
-            alert('Content updated! (Functionality to be implemented)');
-        }
-    </script>
 </body>
 </html>
